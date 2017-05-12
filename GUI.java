@@ -97,6 +97,8 @@ public class GUI extends Application {
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
             fileChooser.setTitle("Choose path and save game");
             File whereToSave = fileChooser.showSaveDialog(firstStage);
+            if (whereToSave == null)
+                return;
             try {
                 SaveMaker.saveOrganisms(whereToSave.getAbsolutePath(), gameWidth, gameHeight, game.organisms);
             } catch (FileNotFoundException e) {
