@@ -13,15 +13,25 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class UserInterface extends Application {
+public class GUI extends Application {
     private StartingWindow startingWindow;
     private Stage firstStage;
+
+    public int getGameWidth() {
+        return gameWidth;
+    }
+
+    public int getGameHeight() {
+        return gameHeight;
+    }
+
     private int gameWidth;
     private int gameHeight;
     private Button nextTurn;
-    private Label announcements;
+    public static Label announcements;
     private Button saveGame;
     private VBox vBoxMenu;
     private Group gameRoot;
@@ -32,12 +42,12 @@ public class UserInterface extends Application {
     public void start(Stage firstStage) throws Exception {
         this.firstStage = firstStage;
         createStartingScene();
-        handleButtonsOnAction();
+        handleFirstSceneButtons();
     }
 
     private void startGame() {
         game = new Game(fields);
-        handleNextTurnButton();
+        handleGameSceneButtons();
     }
 
     private void createStartingScene() throws IOException {
@@ -50,9 +60,14 @@ public class UserInterface extends Application {
         firstStage.show();
     }
 
-    private void handleButtonsOnAction() {
+    private void handleFirstSceneButtons() {
         handleStartButton();
         handleLoadButton();
+    }
+
+    private void handleGameSceneButtons() {
+        handleSaveButton();
+        handleNextTurnButton();
     }
 
     private void handleLoadButton() {
@@ -75,6 +90,21 @@ public class UserInterface extends Application {
     private void handleNextTurnButton() {
         nextTurn.setOnAction(event -> game.doTurn());
     }
+
+    private void handleSaveButton() {
+        saveGame.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+            fileChooser.setTitle("Choose path and save game");
+            File whereToSave = fileChooser.showSaveDialog(firstStage);
+            try {
+                SaveMaker.saveOrganisms(whereToSave.getAbsolutePath(), gameWidth, gameHeight, game.organisms);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
     private void createGameScene() {
         gameRoot = new Group();
         getAndSaveSize();
@@ -99,7 +129,7 @@ public class UserInterface extends Application {
     private Label getAnnouncementsLabel() {
         announcements = new Label();
         announcements.setWrapText(true);
-        announcements.setPrefHeight(gameHeight * MyField.rectangleHeight / 2);
+        announcements.setPrefHeight(gameHeight * MyField.rectangleHeight / 1.15);
         return announcements;
     }
 

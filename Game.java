@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Game {
@@ -31,8 +33,25 @@ public class Game {
     }
 
     public void doTurn() {
+        String announcements = "";
+        sortOrganismsTurnQueue();
         for (int i = 0; i < organisms.size(); i++) {
             organisms.get(i).doTurn();
+            announcements += organisms.get(i).announcements;
+            GUI.announcements.setText(announcements);
         }
+    }
+
+    private void sortOrganismsTurnQueue() {
+        Collections.sort(organisms, new Comparator<Organism>() {
+            @Override
+            public int compare(Organism o1, Organism o2) {
+                if (o1.initiation > o2.initiation)
+                    return -1;
+                else if (o1.initiation == o2.initiation && o1.age > o2.age)
+                    return -1;
+                return 1;
+            }
+        });
     }
 }

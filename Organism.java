@@ -13,6 +13,7 @@ public abstract class Organism {
     public final Color color;
     public final String name;
     protected MyField fields[][];
+
     protected Random generator;
     protected List organisms;
     protected int cooldown;
@@ -71,12 +72,16 @@ public abstract class Organism {
     }
 
     public void setOnField(int destX, int destY) {
-        posX = destX;
-        posY = destY;
-        fields[destY][destX].setColor(color);
-        fields[destY][destX].setName(name);
-        fields[destY][destX].setEmpty(false);
-        fields[destY][destX].setOrganism(this);
+        try {
+            posX = destX;
+            posY = destY;
+            fields[destY][destX].setColor(color);
+            fields[destY][destX].setName(name);
+            fields[destY][destX].setEmpty(false);
+            fields[destY][destX].setOrganism(this);
+        } catch (IndexOutOfBoundsException exc) {
+            exc.printStackTrace();
+        }
     }
 
     public boolean isFieldEmpty(int x, int y) {
