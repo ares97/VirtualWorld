@@ -33,11 +33,10 @@ public class UserInterface extends Application {
         this.firstStage = firstStage;
         createStartingScene();
         handleButtonsOnAction();
-        handleAddingOrganismByRightClick();
     }
 
     private void startGame() {
-        game = new Game();
+        game = new Game(fields);
     }
 
     private void createStartingScene() throws IOException {
@@ -68,66 +67,8 @@ public class UserInterface extends Application {
     private void handleStartButton() {
         startingWindow.startButton.setOnAction(event -> {
             createGameScene();
+            startGame();
         });
-    }
-
-    private void handleAddingOrganismByRightClick() {
-        for (int i = 0; i < gameWidth; i++) {
-            for (int j = 0; j < gameHeight; j++) {
-                int finalI = i;
-                int finalJ = j;
-                fields[i][j].antelope.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new Antelope(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-                fields[i][j].dandelion.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new Dandelion(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-                fields[i][j].fox.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new Fox(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-                fields[i][j].grass.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new Grass(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-                fields[i][j].guarana.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new Guarana(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-                fields[i][j].sheep.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new Sheep(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-                fields[i][j].sosnowskyHogweed.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new SosnowskyHogweed(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-                fields[i][j].tortoise.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new Tortoise(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-                fields[i][j].wildBerry.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new WildBerry(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-                fields[i][j].wolf.setOnAction(event -> {
-                    if (fields[finalI][finalJ].isEmpty()) {
-                        game.organisms.add(new Wolf(fields, game.organisms, finalJ, finalI));
-                    }
-                });
-            }
-        }
     }
 
     private void createGameScene() {
@@ -168,14 +109,70 @@ public class UserInterface extends Application {
     }
 
     private void addGameBoard() {
-        fields = new MyField[gameWidth][gameHeight];
-        for (int i = 0; i < gameWidth; i++) {
-            for (int j = 0; j < gameHeight; j++) {
+        fields = new MyField[gameHeight][gameWidth];
+        for (int i = 0; i < gameHeight; i++) {
+            for (int j = 0; j < gameWidth; j++) {
                 MyField node = new MyField(gameRoot, "", Color.LIGHTGREEN, i, j);
                 gameRoot.getChildren().add(node);
                 fields[i][j] = node;
+                handleAddingOrganismByRightClick(i, j);
             }
         }
+    }
+
+    private void handleAddingOrganismByRightClick(int i, int j) {
+        int finalI = i;
+        int finalJ = j;
+        fields[i][j].antelope.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new Antelope(fields, game.organisms, finalJ, finalI));
+            }
+        });
+        fields[i][j].dandelion.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new Dandelion(fields, game.organisms, finalJ, finalI));
+            }
+        });
+        fields[i][j].fox.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new Fox(fields, game.organisms, finalJ, finalI));
+            }
+        });
+        fields[i][j].grass.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new Grass(fields, game.organisms, finalJ, finalI));
+            }
+        });
+        fields[i][j].guarana.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new Guarana(fields, game.organisms, finalJ, finalI));
+            }
+        });
+        fields[i][j].sheep.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new Sheep(fields, game.organisms, finalJ, finalI));
+            }
+        });
+        fields[i][j].sosnowskyHogweed.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new SosnowskyHogweed(fields, game.organisms, finalJ, finalI));
+            }
+        });
+        fields[i][j].tortoise.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new Tortoise(fields, game.organisms, finalJ, finalI));
+            }
+        });
+        fields[i][j].wildBerry.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new WildBerry(fields, game.organisms, finalJ, finalI));
+            }
+        });
+        fields[i][j].wolf.setOnAction(event -> {
+            if (fields[finalI][finalJ].isEmpty()) {
+                game.organisms.add(new Wolf(fields, game.organisms, finalJ, finalI));
+            }
+        });
     }
 
     private void getAndSaveSize() {

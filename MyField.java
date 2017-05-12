@@ -49,6 +49,7 @@ public class MyField extends GridPane implements Serializable {
         rectangle.setFill(color.deriveColor(1, 1, 1, 0.7));
     }
 
+
     public String getName() {
         return name;
     }
@@ -115,6 +116,5 @@ public class MyField extends GridPane implements Serializable {
         contextMenu = new ContextMenu();
         contextMenu.getItems().addAll(antelope, dandelion, fox, grass, guarana, sheep, sosnowskyHogweed, tortoise, wildBerry, wolf);
     }
-
 
 }
