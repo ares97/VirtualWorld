@@ -29,4 +29,10 @@ public class Game {
         organisms.add(new WildBerry(fields, organisms));
         organisms.add(new SosnowskyHogweed(fields, organisms));
     }
+
+    public void doTurn() {
+        for (int i = 0; i < organisms.size(); i++) {
+            organisms.get(i).doTurn();
+        }
+    }
 }

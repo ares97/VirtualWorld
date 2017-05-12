@@ -37,6 +37,7 @@ public class UserInterface extends Application {
 
     private void startGame() {
         game = new Game(fields);
+        handleNextTurnButton();
     }
 
     private void createStartingScene() throws IOException {
@@ -71,6 +72,9 @@ public class UserInterface extends Application {
         });
     }
 
+    private void handleNextTurnButton() {
+        nextTurn.setOnAction(event -> game.doTurn());
+    }
     private void createGameScene() {
         gameRoot = new Group();
         getAndSaveSize();
