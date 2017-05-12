@@ -3,8 +3,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ToolBar;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -16,7 +19,9 @@ public class Main extends Application {
     private int gameWidth;
     private int gameHeight;
     private Button nextTurn;
+    private Label announcements;
     private Button saveGame;
+    private VBox vBoxMenu;
     private Group gameRoot;
 
     @Override
@@ -57,19 +62,31 @@ public class Main extends Application {
     }
 
     private void addMenuBar() {
-        VBox vboxMenu = new VBox();
+        getAnnouncementsLabel();
+        addVBoxMenu();
+        gameRoot.getChildren().addAll(vBoxMenu);
+    }
+
+    private ToolBar getToolBar() {
         nextTurn = new Button("next turn");
         saveGame = new Button("save");
-        ToolBar toolBar = new ToolBar(nextTurn, saveGame);
-        Label announcements = new Label("lorem loreml\nlorem loreml\nlorem loreml\nlorem loreml\nlorem loreml\n");
+        return new ToolBar(nextTurn, saveGame);
+    }
+
+    private Label getAnnouncementsLabel() {
+        announcements = new Label();
         announcements.setWrapText(true);
         announcements.setPrefHeight(gameHeight * MyField.rectangleHeight / 2);
-        vboxMenu.setMinHeight(gameHeight * MyField.rectangleHeight);
-        vboxMenu.setMinWidth(MyField.rectangleWidth * 9);
-        vboxMenu.setStyle("-fx-background-color: khaki; -fx-font-size: 13;");
-        vboxMenu.getChildren().addAll(toolBar, announcements);
-        gameRoot.getChildren().addAll(vboxMenu);
-        vboxMenu.setTranslateX(gameWidth * MyField.rectangleWidth);
+        return announcements;
+    }
+
+    private void addVBoxMenu() {
+        vBoxMenu = new VBox();
+        vBoxMenu.setMinHeight(gameHeight * MyField.rectangleHeight);
+        vBoxMenu.setMinWidth(MyField.rectangleWidth * 9);
+        vBoxMenu.setStyle("-fx-background-color: khaki; -fx-font-size: 13;");
+        vBoxMenu.setTranslateX(gameWidth * MyField.rectangleWidth);
+        vBoxMenu.getChildren().addAll(getToolBar(), getAnnouncementsLabel());
     }
 
     private void addGameBoard() {
