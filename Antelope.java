@@ -3,11 +3,11 @@ import java.util.List;
 
 public class Antelope extends Animal {
     Antelope(MyField[][] fields, List<Organism> organisms) {
-        super(fields, Organisms.ANTELOPE.strength, Organisms.ANTELOPE.initiation, Organisms.ANTELOPE.color, Organisms.ANTELOPE.name, organisms);
+        super(fields, AllOrganisms.ANTELOPE.strength, AllOrganisms.ANTELOPE.initiation, AllOrganisms.ANTELOPE.color, AllOrganisms.ANTELOPE.name, organisms);
     }
 
     Antelope(MyField[][] fields, List<Organism> organisms, int posX, int posY) {
-        super(fields, Organisms.ANTELOPE.strength, Organisms.ANTELOPE.initiation, Organisms.ANTELOPE.color, Organisms.ANTELOPE.name, organisms, posX, posY);
+        super(fields, AllOrganisms.ANTELOPE.strength, AllOrganisms.ANTELOPE.initiation, AllOrganisms.ANTELOPE.color, AllOrganisms.ANTELOPE.name, organisms, posX, posY);
     }
 
     @Override

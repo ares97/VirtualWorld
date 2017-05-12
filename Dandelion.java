@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Dandelion extends Plant {
     Dandelion(MyField[][] fields, List<Organism> organisms) {
-        super(fields, Organisms.DANDELION.strength, Organisms.DANDELION.initiation, Organisms.DANDELION.color, Organisms.DANDELION.name, organisms);
+        super(fields, AllOrganisms.DANDELION.strength, AllOrganisms.DANDELION.initiation, AllOrganisms.DANDELION.color, AllOrganisms.DANDELION.name, organisms);
     }
 
     Dandelion(MyField[][] fields, List<Organism> organisms, int posX, int posY) {

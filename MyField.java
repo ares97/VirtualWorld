@@ -24,16 +24,16 @@ public class MyField extends GridPane implements Serializable {
     public ContextMenu contextMenu;
     public static final int rectangleWidth = 25;
     public static final int rectangleHeight = 25;
-    MenuItem sheep = new MenuItem(Organisms.SHEEP.name);
-    MenuItem wolf = new MenuItem(Organisms.WOLF.name);
-    MenuItem antelope = new MenuItem(Organisms.ANTELOPE.name);
-    MenuItem fox = new MenuItem(Organisms.FOX.name);
-    MenuItem tortoise = new MenuItem(Organisms.TORTOISE.name);
-    MenuItem dandelion = new MenuItem(Organisms.DANDELION.name);
-    MenuItem grass = new MenuItem(Organisms.GRASS.name);
-    MenuItem guarana = new MenuItem(Organisms.GUARANA.name);
-    MenuItem sosnowskyHogweed = new MenuItem(Organisms.SOSNOWSKY_HOGWEED.name);
-    MenuItem wildBerry = new MenuItem(Organisms.WILD_BERRY.name);
+    MenuItem sheep = new MenuItem(AllOrganisms.SHEEP.name);
+    MenuItem wolf = new MenuItem(AllOrganisms.WOLF.name);
+    MenuItem antelope = new MenuItem(AllOrganisms.ANTELOPE.name);
+    MenuItem fox = new MenuItem(AllOrganisms.FOX.name);
+    MenuItem tortoise = new MenuItem(AllOrganisms.TORTOISE.name);
+    MenuItem dandelion = new MenuItem(AllOrganisms.DANDELION.name);
+    MenuItem grass = new MenuItem(AllOrganisms.GRASS.name);
+    MenuItem guarana = new MenuItem(AllOrganisms.GUARANA.name);
+    MenuItem sosnowskyHogweed = new MenuItem(AllOrganisms.SOSNOWSKY_HOGWEED.name);
+    MenuItem wildBerry = new MenuItem(AllOrganisms.WILD_BERRY.name);
 
     public Organism getOrganism() {
         return organism;

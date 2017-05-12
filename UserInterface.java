@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application {
+public class UserInterface extends Application {
     private StartingWindow startingWindow;
     private Stage firstStage;
     private int gameWidth;
@@ -23,6 +23,7 @@ public class Main extends Application {
     private Button saveGame;
     private VBox vBoxMenu;
     private Group gameRoot;
+    private MyField[][] fields;
 
     @Override
     public void start(Stage firstStage) throws Exception {
@@ -90,11 +91,12 @@ public class Main extends Application {
     }
 
     private void addGameBoard() {
+        fields = new MyField[gameWidth][gameHeight];
         for (int i = 0; i < gameWidth; i++) {
             for (int j = 0; j < gameHeight; j++) {
                 MyField node = new MyField(gameRoot, "", Color.LIGHTGREEN, i, j);
                 gameRoot.getChildren().add(node);
-                //fields[i][j] = node;
+                fields[i][j] = node;
             }
         }
     }

@@ -1,6 +1,6 @@
 import javafx.scene.paint.Color;
 
-public enum Organisms {
+public enum AllOrganisms {
     ANTELOPE(4, 4, "Antelope", Color.CORNSILK),
     DANDELION(0, 0, "Dandelion", Color.YELLOW),
     FOX(3, 7, "Fox", Color.DARKRED),
@@ -17,7 +17,7 @@ public enum Organisms {
     final String name;
     final Color color;
 
-    Organisms(int strength, int initiation, String name, Color color) {
+    AllOrganisms(int strength, int initiation, String name, Color color) {
         this.strength = strength;
         this.initiation = initiation;
         this.name = name;

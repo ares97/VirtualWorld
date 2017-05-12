@@ -6,7 +6,7 @@ import java.util.Random;
 public abstract class Organism {
     protected String announcements;
     protected int age;
-    protected int strenght;
+    protected int strength;
     protected int initiation;
     protected int posX, posY;
     protected boolean toDelete;
@@ -39,7 +39,7 @@ public abstract class Organism {
     Organism(MyField fields[][], int str, int init, Color color, String name, List<Organism> organisms) {
         this.fields = fields;
         announcements = "";
-        strenght = str;
+        strength = str;
         initiation = init;
         age = 0;
         toDelete = false;
@@ -56,7 +56,7 @@ public abstract class Organism {
 
     Organism(MyField fields[][], int str, int init, Color color, String name, List<Organism> organisms, int posX, int posY) {
         this.fields = fields;
-        strenght = str;
+        strength = str;
         initiation = init;
         announcements = "";
         age = 0;

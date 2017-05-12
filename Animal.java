@@ -65,9 +65,9 @@ public abstract class Animal extends Organism {
 
     @Override
     int reflectedAttack(Organism opponent) {
-        if (strenght > opponent.strenght)
+        if (strength > opponent.strength)
             return 1;
-        else if (strenght == opponent.strenght) {
+        else if (strength == opponent.strength) {
             if (age > opponent.age)
                 return 1;
         }
