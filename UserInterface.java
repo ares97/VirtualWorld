@@ -9,8 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class UserInterface extends Application {
@@ -24,12 +26,18 @@ public class UserInterface extends Application {
     private VBox vBoxMenu;
     private Group gameRoot;
     private MyField[][] fields;
+    private Game game;
 
     @Override
     public void start(Stage firstStage) throws Exception {
         this.firstStage = firstStage;
         createStartingScene();
-        handleStartingWindowUI();
+        handleButtonsOnAction();
+        handleAddingOrganismByRightClick();
+    }
+
+    private void startGame() {
+        game = new Game();
     }
 
     private void createStartingScene() throws IOException {
@@ -42,15 +50,84 @@ public class UserInterface extends Application {
         firstStage.show();
     }
 
-    private void handleStartingWindowUI() {
+    private void handleButtonsOnAction() {
         handleStartButton();
-        //todo handle load button
+        handleLoadButton();
+    }
+
+    private void handleLoadButton() {
+        startingWindow.LoadButton.setOnAction(event -> loadArchivedGame());
+    }
+
+    private void loadArchivedGame() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Load saved game");
+        File savedGame = fileChooser.showOpenDialog(firstStage);
     }
 
     private void handleStartButton() {
         startingWindow.startButton.setOnAction(event -> {
             createGameScene();
         });
+    }
+
+    private void handleAddingOrganismByRightClick() {
+        for (int i = 0; i < gameWidth; i++) {
+            for (int j = 0; j < gameHeight; j++) {
+                int finalI = i;
+                int finalJ = j;
+                fields[i][j].antelope.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new Antelope(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+                fields[i][j].dandelion.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new Dandelion(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+                fields[i][j].fox.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new Fox(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+                fields[i][j].grass.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new Grass(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+                fields[i][j].guarana.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new Guarana(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+                fields[i][j].sheep.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new Sheep(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+                fields[i][j].sosnowskyHogweed.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new SosnowskyHogweed(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+                fields[i][j].tortoise.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new Tortoise(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+                fields[i][j].wildBerry.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new WildBerry(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+                fields[i][j].wolf.setOnAction(event -> {
+                    if (fields[finalI][finalJ].isEmpty()) {
+                        game.organisms.add(new Wolf(fields, game.organisms, finalJ, finalI));
+                    }
+                });
+            }
+        }
     }
 
     private void createGameScene() {
