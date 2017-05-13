@@ -59,7 +59,7 @@ public class LoadMaker {
                     organisms.add(new Sheep(fields, organisms, posX, posY, strenght, initiation, name, color, toDelete, cooldown, age));
                     break;
                 case "Human":
-                    //    organisms.add(new Human(fields,organisms,posX,posY,strenght,initiation,name,color,toDelete,cooldown,age));
+                    organisms.add(new Human(fields, organisms, posX, posY, strenght, initiation, name, color, toDelete, cooldown, age));
                     break;
                 case "Guarana":
                     organisms.add(new Guarana(fields, organisms, posX, posY, strenght, initiation, name, color, toDelete, cooldown, age));

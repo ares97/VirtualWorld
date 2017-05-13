@@ -19,7 +19,7 @@ public class Game {
     }
 
     private void setFirstOrganisms() {
-        //organisms.add(new Human(menuWindow, gameStage, gameScene, fields, organisms));
+        organisms.add(new Human(fields, organisms));
         organisms.add(new Wolf(fields, organisms));
         organisms.add(new Wolf(fields, organisms));
         organisms.add(new Fox(fields, organisms));
@@ -35,6 +35,7 @@ public class Game {
         organisms.add(new Guarana(fields, organisms));
         organisms.add(new WildBerry(fields, organisms));
         organisms.add(new SosnowskyHogweed(fields, organisms));
+        sortOrganismsTurnQueue();
     }
 
     public void doTurn() {

@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -7,6 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -22,12 +25,14 @@ public class GUI extends Application {
     private int gameWidth;
     private int gameHeight;
     private Button nextTurn;
+    private Button specialAbility;
     public static Label announcements;
     private Button saveGame;
     private VBox vBoxMenu;
     private Group gameRoot;
     private MyField[][] fields;
     private Game game;
+    public static KeyCode recentPressedKey;
 
     @Override
     public void start(Stage firstStage) throws Exception {
@@ -39,6 +44,17 @@ public class GUI extends Application {
     private void startGame() {
         game = new Game(fields);
         handleGameSceneButtons();
+    }
+
+    private void handleKeyArrows() {
+        firstStage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN ||
+                        event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT)
+                    recentPressedKey = event.getCode();
+            }
+        });
     }
 
     private void createStartingScene() throws IOException {
@@ -59,6 +75,7 @@ public class GUI extends Application {
     private void handleGameSceneButtons() {
         handleSaveButton();
         handleNextTurnButton();
+        handleSpecialAbilityButton();
     }
 
     private void handleLoadButton() {
@@ -93,6 +110,7 @@ public class GUI extends Application {
         startingWindow.startButton.setOnAction(event -> {
             createGameScene();
             startGame();
+            handleKeyArrows();
         });
     }
 
@@ -112,6 +130,20 @@ public class GUI extends Application {
                 SaveMaker.saveOrganisms(whereToSave.getAbsolutePath(), gameWidth, gameHeight, game.organisms);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
+            }
+        });
+    }
+
+    private void handleSpecialAbilityButton() {
+        specialAbility.setOnAction(event -> {
+            if (Human.specialAbilityReadyToUse) {
+                Human.useSpecialAbility = true;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(null);
+                alert.setHeaderText(null);
+                alert.setContentText("Special ability is not ready to use, yet!");
+                alert.showAndWait();
             }
         });
     }
@@ -142,7 +174,8 @@ public class GUI extends Application {
     private ToolBar getToolBar() {
         nextTurn = new Button("next turn");
         saveGame = new Button("save");
-        return new ToolBar(nextTurn, saveGame);
+        specialAbility = new Button("special ability");
+        return new ToolBar(nextTurn, specialAbility, saveGame);
     }
 
     private Label getAnnouncementsLabel() {
