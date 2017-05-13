@@ -20,7 +20,7 @@ public class Grass extends Plant {
         if (generator.nextInt(20) == 0) {
             MyField childField = getEmptyNearbyFieldForSpreadingPlant();
             if (childField != null) {
-                organisms.add(new Grass(fields, organisms, childField.getY(), childField.getX()));
+                organisms.add(new Grass(fields, organisms, childField.getX(), childField.getY()));
                 announcements += (name + " spreads over\n");
             }
         }

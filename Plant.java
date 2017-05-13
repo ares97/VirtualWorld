@@ -22,7 +22,7 @@ public abstract class Plant extends Organism {
             for (int j = 0; j < 3; j++) {
                 if (isInsideBoard((posX + (j - 1)), (posY + (i - 1))) &&
                         isFieldEmpty((posX + (j - 1)), (posY + (i - 1)))) {
-                    return fields[(posY + i - 1)][(posX + j - 1)];
+                    return fields[(posX + j - 1)][(posY + i - 1)];
                 }
             }
         }

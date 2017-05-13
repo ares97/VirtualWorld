@@ -19,9 +19,7 @@ import java.io.IOException;
 public class GUI extends Application {
     private StartingWindow startingWindow;
     private Stage firstStage;
-
     private int gameWidth;
-
     private int gameHeight;
     private Button nextTurn;
     public static Label announcements;
@@ -164,9 +162,9 @@ public class GUI extends Application {
     }
 
     private void addGameBoard() {
-        fields = new MyField[gameHeight][gameWidth];
-        for (int i = 0; i < gameHeight; i++) {
-            for (int j = 0; j < gameWidth; j++) {
+        fields = new MyField[gameWidth][gameHeight];
+        for (int i = 0; i < gameWidth; i++) {
+            for (int j = 0; j < gameHeight; j++) {
                 MyField node = new MyField(gameRoot, "", Color.LIGHTGREEN, i, j);
                 gameRoot.getChildren().add(node);
                 fields[i][j] = node;
@@ -180,52 +178,52 @@ public class GUI extends Application {
         int finalJ = j;
         fields[i][j].antelope.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new Antelope(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new Antelope(fields, game.organisms, finalI, finalJ));
             }
         });
         fields[i][j].dandelion.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new Dandelion(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new Dandelion(fields, game.organisms, finalI, finalJ));
             }
         });
         fields[i][j].fox.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new Fox(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new Fox(fields, game.organisms, finalI, finalJ));
             }
         });
         fields[i][j].grass.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new Grass(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new Grass(fields, game.organisms, finalI, finalJ));
             }
         });
         fields[i][j].guarana.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new Guarana(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new Guarana(fields, game.organisms, finalI, finalJ));
             }
         });
         fields[i][j].sheep.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new Sheep(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new Sheep(fields, game.organisms, finalI, finalJ));
             }
         });
         fields[i][j].sosnowskyHogweed.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new SosnowskyHogweed(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new SosnowskyHogweed(fields, game.organisms, finalI, finalJ));
             }
         });
         fields[i][j].tortoise.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new Tortoise(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new Tortoise(fields, game.organisms, finalI, finalJ));
             }
         });
         fields[i][j].wildBerry.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new WildBerry(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new WildBerry(fields, game.organisms, finalI, finalJ));
             }
         });
         fields[i][j].wolf.setOnAction(event -> {
             if (fields[finalI][finalJ].isEmpty()) {
-                game.organisms.add(new Wolf(fields, game.organisms, finalJ, finalI));
+                game.organisms.add(new Wolf(fields, game.organisms, finalI, finalJ));
             }
         });
     }

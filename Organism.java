@@ -23,18 +23,20 @@ public abstract class Organism {
     void doTurn() {
         if (toDelete)
             organisms.remove(this);
-        announcements = "";
-        action();
-        age++;
+        else {
+            announcements = "";
+            action();
+            age++;
+        }
     }
 
     abstract int reflectedAttack(Organism opponent);
 
     public void emptyField() {
-        fields[posY][posX].setEmpty(true);
-        fields[posY][posX].setName("  ");
-        fields[posY][posX].setColor(Color.LIGHTGREEN);
-        fields[posY][posX].setOrganism(null);
+        fields[posX][posY].setEmpty(true);
+        fields[posX][posY].setName("  ");
+        fields[posX][posY].setColor(Color.LIGHTGREEN);
+        fields[posX][posY].setOrganism(null);
     }
 
     Organism(MyField fields[][], int str, int init, Color color, String name, List<Organism> organisms) {
@@ -49,9 +51,9 @@ public abstract class Organism {
         generator = new Random();
         this.organisms = organisms;
         if (setOrganismOnEmptyField()) {
-            fields[posY][posX].setOrganism(this);
-            fields[posY][posX].setName(name);
-            fields[posY][posX].setColor(color);
+            fields[posX][posY].setOrganism(this);
+            fields[posX][posY].setName(name);
+            fields[posX][posY].setColor(color);
         }
     }
 
@@ -92,28 +94,28 @@ public abstract class Organism {
         try {
             posX = destX;
             posY = destY;
-            fields[destY][destX].setName(name);
-            fields[destY][destX].setEmpty(false);
-            fields[destY][destX].setOrganism(this);
-            fields[destY][destX].setColor(color);
+            fields[destX][destY].setName(name);
+            fields[destX][destY].setEmpty(false);
+            fields[destX][destY].setOrganism(this);
+            fields[destX][destY].setColor(color);
         } catch (IndexOutOfBoundsException exc) {
             exc.printStackTrace();
         }
     }
 
     public boolean isFieldEmpty(int x, int y) {
-        return fields[y][x].isEmpty();
+        return fields[x][y].isEmpty();
     }
 
     public boolean setOrganismOnEmptyField() {
         Random generator = new Random();
         int x = generator.nextInt(fields.length);
         int y = generator.nextInt(fields[0].length);
-        for (int i = 0; i < fields[0].length; i++) {
-            for (int j = 0; j < fields.length; j++) {
-                if (isFieldEmpty((x + j) % fields.length, (y + i) % fields[0].length)) {
-                    posX = (x + j) % fields.length;
-                    posY = (y + i) % fields[0].length;
+        for (int i = 0; i < fields.length; i++) {
+            for (int j = 0; j < fields[0].length; j++) {
+                if (isFieldEmpty((x + i) % fields.length, (y + j) % fields[0].length)) {
+                    posY = (y + j) % fields[0].length;
+                    posX = (x + i) % fields.length;
                     return true;
                 }
             }

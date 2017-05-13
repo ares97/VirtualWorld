@@ -41,9 +41,13 @@ public class Game {
         String announcements = "";
         sortOrganismsTurnQueue();
         for (int i = 0; i < organisms.size(); i++) {
-            organisms.get(i).doTurn();
-            announcements += organisms.get(i).announcements;
-            GUI.announcements.setText(announcements);
+            if (organisms.get(i).toDelete) {
+                organisms.get(i).doTurn();
+            } else {
+                organisms.get(i).doTurn();
+                announcements += organisms.get(i).announcements;
+                GUI.announcements.setText(announcements);
+            }
         }
     }
 
@@ -55,7 +59,8 @@ public class Game {
                     return -1;
                 else if (o1.initiation == o2.initiation && o1.age > o2.age)
                     return -1;
-                return 1;
+                else
+                    return 1;
             }
         });
     }

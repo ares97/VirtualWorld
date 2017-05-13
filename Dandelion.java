@@ -21,7 +21,7 @@ public class Dandelion extends Plant {
             if (generator.nextInt(20) == 0) {
                 MyField childField = getEmptyNearbyFieldForSpreadingPlant();
                 if (childField != null) {
-                    organisms.add(new Dandelion(fields, organisms, childField.getY(), childField.getX()));
+                    organisms.add(new Dandelion(fields, organisms, childField.getX(), childField.getY()));
                     announcements += (name + " spreads over\n");
                 }
             }

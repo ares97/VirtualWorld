@@ -35,10 +35,10 @@ public class Fox extends Animal {
                 if (isFieldEmpty(posX + addToX, posY + addToY)) {
                     emptyField();
                     setOnField(posX + addToX, posY + addToY);
-                } else if (fields[posY + addToY][posX + addToX].getOrganism().strength > strength)
+                } else if (fields[posX + addToX][posY + addToY].getOrganism().strength > strength)
                     return; // 'fox never moves to stronger enemy's field
                 else {
-                    collision(fields[posY + addToY][posX + addToX].getOrganism());
+                    collision(fields[posX + addToX][posY + addToY].getOrganism());
                 }
             }
         }

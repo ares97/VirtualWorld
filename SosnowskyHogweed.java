@@ -27,7 +27,7 @@ public class SosnowskyHogweed extends Plant {
         if (generator.nextInt(20) == 0) {
             MyField childField = getEmptyNearbyFieldForSpreadingPlant();
             if (childField != null) {
-                organisms.add(new SosnowskyHogweed(fields, organisms, childField.getY(), childField.getX()));
+                organisms.add(new SosnowskyHogweed(fields, organisms, childField.getX(), childField.getY()));
                 announcements += (name + " spreads over\n");
             }
         }
@@ -39,8 +39,8 @@ public class SosnowskyHogweed extends Plant {
             for (int j = -1; j < 2; j++) {
                 if (i == 0 && j == 0)
                     continue;
-                if (isInsideBoard(posX + j, posY + i) && !fields[posY + i][posX + j].isEmpty()) {
-                    Organism opponent = fields[posY + i][posX + j].getOrganism();
+                if (isInsideBoard(posX + j, posY + i) && !fields[posX + j][posY + i].isEmpty()) {
+                    Organism opponent = fields[posX + j][posY + i].getOrganism();
                     if (opponent == null || opponent instanceof Plant)
                         continue;
                     opponent.emptyField();

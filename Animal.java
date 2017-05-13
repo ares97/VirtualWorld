@@ -88,7 +88,7 @@ public abstract class Animal extends Organism {
                     emptyField();
                     setOnField(posX + addToX, posY + addToY);
                 } else {
-                    collision(fields[posY + addToY][posX + addToX].getOrganism());
+                    collision(fields[posX + addToX][posY + addToY].getOrganism());
                 }
             }
         }

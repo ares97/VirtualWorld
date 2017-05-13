@@ -20,7 +20,7 @@ public class Guarana extends Plant {
         if (generator.nextInt(20) == 0) {
             MyField childField = getEmptyNearbyFieldForSpreadingPlant();
             if (childField != null) {
-                organisms.add(new Guarana(fields, organisms, childField.getY(), childField.getX()));
+                organisms.add(new Guarana(fields, organisms, childField.getX(), childField.getY()));
                 announcements += (name + " spreads over\n");
             }
         }
