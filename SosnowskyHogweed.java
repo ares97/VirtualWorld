@@ -1,3 +1,5 @@
+import javafx.scene.paint.Color;
+
 import java.util.List;
 
 public class SosnowskyHogweed extends Plant {
@@ -7,6 +9,10 @@ public class SosnowskyHogweed extends Plant {
 
     SosnowskyHogweed(MyField[][] fields, List<Organism> organisms, int posX, int posY) {
         super(fields, AllOrganisms.SOSNOWSKY_HOGWEED.strength, AllOrganisms.SOSNOWSKY_HOGWEED.initiation, AllOrganisms.SOSNOWSKY_HOGWEED.color, AllOrganisms.SOSNOWSKY_HOGWEED.name, organisms, posX, posY);
+    }
+
+    SosnowskyHogweed(MyField[][] fields, List<Organism> organisms, int posX, int posY, int str, int init, String name, Color color, boolean toDelete, int cooldown, int age) {
+        super(fields, organisms, str, init, color, name, posX, posY, toDelete, age, cooldown);
     }
 
     @Override

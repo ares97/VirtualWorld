@@ -1,3 +1,5 @@
+import javafx.scene.paint.Color;
+
 import java.util.List;
 
 public class Guarana extends Plant {
@@ -7,6 +9,10 @@ public class Guarana extends Plant {
 
     Guarana(MyField[][] fields, List<Organism> organisms, int posX, int posY) {
         super(fields, AllOrganisms.GUARANA.strength, AllOrganisms.GUARANA.initiation, AllOrganisms.GUARANA.color, AllOrganisms.GUARANA.name, organisms, posX, posY);
+    }
+
+    Guarana(MyField[][] fields, List<Organism> organisms, int posX, int posY, int str, int init, String name, Color color, boolean toDelete, int cooldown, int age) {
+        super(fields, organisms, str, init, color, name, posX, posY, toDelete, age, cooldown);
     }
 
     @Override

@@ -71,14 +71,31 @@ public abstract class Organism {
         setOnField(posX, posY);
     }
 
+    Organism(MyField fields[][], List<Organism> organisms, int str, int init, Color color, String name, int posX, int posY, boolean toDelete, int age, int cooldown) {
+        this.fields = fields;
+        strength = str;
+        initiation = init;
+        announcements = "";
+        this.age = age;
+        this.toDelete = toDelete;
+        this.color = color;
+        this.name = name;
+        generator = new Random();
+        this.organisms = organisms;
+        this.posX = posX;
+        this.posY = posY;
+        this.cooldown = cooldown;
+        setOnField(posX, posY);
+    }
+
     public void setOnField(int destX, int destY) {
         try {
             posX = destX;
             posY = destY;
-            fields[destY][destX].setColor(color);
             fields[destY][destX].setName(name);
             fields[destY][destX].setEmpty(false);
             fields[destY][destX].setOrganism(this);
+            fields[destY][destX].setColor(color);
         } catch (IndexOutOfBoundsException exc) {
             exc.printStackTrace();
         }

@@ -13,6 +13,11 @@ public class Game {
         setFirstOrganisms();
     }
 
+    Game(MyField[][] fields, List<Organism> organisms) {
+        this.fields = fields;
+        this.organisms = organisms;
+    }
+
     private void setFirstOrganisms() {
         //organisms.add(new Human(menuWindow, gameStage, gameScene, fields, organisms));
         organisms.add(new Wolf(fields, organisms));

@@ -1,3 +1,5 @@
+import javafx.scene.paint.Color;
+
 import java.util.List;
 
 
@@ -8,6 +10,10 @@ public class Antelope extends Animal {
 
     Antelope(MyField[][] fields, List<Organism> organisms, int posX, int posY) {
         super(fields, AllOrganisms.ANTELOPE.strength, AllOrganisms.ANTELOPE.initiation, AllOrganisms.ANTELOPE.color, AllOrganisms.ANTELOPE.name, organisms, posX, posY);
+    }
+
+    Antelope(MyField[][] fields, List<Organism> organisms, int posX, int posY, int str, int init, String name, Color color, boolean toDelete, int cooldown, int age) {
+        super(fields, organisms, str, init, color, name, posX, posY, toDelete, age, cooldown);
     }
 
     @Override

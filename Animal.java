@@ -18,6 +18,10 @@ public abstract class Animal extends Organism {
         addToY = 0;
     }
 
+    Animal(MyField[][] fields, List<Organism> organisms, int str, int init, Color color, String name, int posX, int posY, boolean toDelete, int age, int cooldown) {
+        super(fields, organisms, str, init, color, name, posX, posY, toDelete, age, cooldown);
+    }
+
     void collision(Organism opponent) {
         if (this.getClass().isInstance(opponent)) {
             reproduction(opponent);

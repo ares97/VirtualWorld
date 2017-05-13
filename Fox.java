@@ -1,3 +1,5 @@
+import javafx.scene.paint.Color;
+
 import java.util.List;
 
 
@@ -8,6 +10,10 @@ public class Fox extends Animal {
 
     Fox(MyField[][] fields, List<Organism> organisms, int posX, int posY) {
         super(fields, AllOrganisms.FOX.strength, AllOrganisms.FOX.initiation, AllOrganisms.FOX.color, AllOrganisms.FOX.name, organisms, posX, posY);
+    }
+
+    Fox(MyField[][] fields, List<Organism> organisms, int posX, int posY, int str, int init, String name, Color color, boolean toDelete, int cooldown, int age) {
+        super(fields, organisms, str, init, color, name, posX, posY, toDelete, age, cooldown);
     }
 
     @Override

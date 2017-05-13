@@ -20,15 +20,8 @@ public class GUI extends Application {
     private StartingWindow startingWindow;
     private Stage firstStage;
 
-    public int getGameWidth() {
-        return gameWidth;
-    }
-
-    public int getGameHeight() {
-        return gameHeight;
-    }
-
     private int gameWidth;
+
     private int gameHeight;
     private Button nextTurn;
     public static Label announcements;
@@ -78,6 +71,24 @@ public class GUI extends Application {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Load saved game");
         File savedGame = fileChooser.showOpenDialog(firstStage);
+
+        try {
+            LoadMaker loadMaker = new LoadMaker(savedGame, fields);
+            createGameFromLoad(loadMaker);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createGameFromLoad(LoadMaker loadMaker) {
+        loadMaker.readBoardSize();
+        gameHeight = loadMaker.gameHeight;
+        gameWidth = loadMaker.gameWidth;
+        createGameSceneFromLoad();
+        loadMaker.fields = fields;
+        loadMaker.readOrganisms();
+        game = new Game(fields, loadMaker.organisms);
+        handleGameSceneButtons();
     }
 
     private void handleStartButton() {
@@ -110,6 +121,14 @@ public class GUI extends Application {
     private void createGameScene() {
         gameRoot = new Group();
         getAndSaveSize();
+        addGameBoard();
+        addMenuBar();
+        firstStage.getScene().setRoot(gameRoot);
+        firstStage.sizeToScene();
+    }
+
+    private void createGameSceneFromLoad() {
+        gameRoot = new Group();
         addGameBoard();
         addMenuBar();
         firstStage.getScene().setRoot(gameRoot);

@@ -1,3 +1,5 @@
+import javafx.scene.paint.Color;
+
 import java.util.List;
 
 
@@ -9,6 +11,10 @@ public class Wolf extends Animal {
 
     Wolf(MyField[][] fields, List<Organism> organisms, int posX, int posY) {
         super(fields, AllOrganisms.WOLF.strength, AllOrganisms.WOLF.initiation, AllOrganisms.WOLF.color, AllOrganisms.WOLF.name, organisms, posX, posY);
+    }
+
+    Wolf(MyField[][] fields, List<Organism> organisms, int posX, int posY, int str, int init, String name, Color color, boolean toDelete, int cooldown, int age) {
+        super(fields, organisms, str, init, color, name, posX, posY, toDelete, age, cooldown);
     }
 
     @Override

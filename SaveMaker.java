@@ -12,11 +12,11 @@ public class SaveMaker {
         output.println(gameHeight);
         for (Organism organism : organisms) {
             output.println(organism.name);
+            output.println(organism.posX);
+            output.println(organism.posY);
             output.println(organism.age);
             output.println(organism.strength);
             output.println(organism.initiation);
-            output.println(organism.posX);
-            output.println(organism.posY);
             output.println(organism.toDelete);
             output.println(organism.color);
             output.println(organism.cooldown);
