@@ -38,6 +38,7 @@ public class Game {
         sortOrganismsTurnQueue();
     }
 
+
     public void doTurn() {
         String announcements = "";
         sortOrganismsTurnQueue();
@@ -51,6 +52,7 @@ public class Game {
             }
         }
     }
+
 
     private void sortOrganismsTurnQueue() {
         Collections.sort(organisms, new Comparator<Organism>() {

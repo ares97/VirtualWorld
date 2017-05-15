@@ -8,7 +8,7 @@ public class Human extends Animal {
 
     Human(MyField[][] fields, List<Organism> organisms) {
         super(fields, AllOrganisms.HUMAN.strength, AllOrganisms.HUMAN.initiation, AllOrganisms.HUMAN.color, AllOrganisms.HUMAN.name, organisms);
-        //super.action();
+        super.action();
         addToX = 0;
         addToY = 0;
         cooldown = 0;
@@ -29,9 +29,10 @@ public class Human extends Animal {
     }
 
     void doTurn() {
-        if (toDelete)
+        if (toDelete) {
+            emptyField();
             organisms.remove(this);
-        else {
+        } else {
             announcements = "";
             handleSpecialAbility();
             action();
@@ -48,23 +49,26 @@ public class Human extends Animal {
 
     @Override
     void setMovePosition() {
+        addToY = 0;
+        addToX = 0;
         if (GUI.recentPressedKey != null) {
+            System.out.println(GUI.recentPressedKey);
             switch (GUI.recentPressedKey) {
                 case UP:
-                    // moveHuman(0, -1);
+                    moveHuman(0, -1);
                     break;
                 case DOWN:
-                    // moveHuman(0, 1);
+                    moveHuman(0, 1);
                     break;
                 case RIGHT:
-                    // moveHuman(1, 0);
+                    moveHuman(1, 0);
                     break;
                 case LEFT:
-                    //moveHuman(-1, 0);
+                    moveHuman(-1, 0);
                     break;
             }
         }
-        moveHuman(0, 0);
+        GUI.recentPressedKey = null;
     }
 
     private void handleSpecialAbility() {

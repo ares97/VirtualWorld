@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -115,7 +116,8 @@ public class GUI extends Application {
     }
 
     private void handleNextTurnButton() {
-        nextTurn.setOnAction(event -> game.doTurn());
+
+        nextTurn.setOnAction(event -> Platform.runLater(() -> game.doTurn()));
     }
 
     private void handleSaveButton() {
