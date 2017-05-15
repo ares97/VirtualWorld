@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="407.00007792968245" prefWidth="349.0" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="407.00007792968245" prefWidth="349.0"
             xmlns="http://javafx.com/javafx/2.2" fx:controller="StartingWindow">
     <children>
         <TextField fx:id="sizeX" layoutX="114.0" layoutY="140.0" prefWidth="200.0" text="20"/>

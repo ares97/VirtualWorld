@@ -25,19 +25,23 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class GUI extends Application {
+    public static Label announcements;
+    public static KeyCode recentPressedKey;
     private StartingWindow startingWindow;
     private Stage firstStage;
     private int gameWidth;
     private int gameHeight;
     private Button nextTurn;
     private Button specialAbility;
-    public static Label announcements;
     private Button saveGame;
     private VBox vBoxMenu;
     private Group gameRoot;
     private MyField[][] fields;
     private Game game;
-    public static KeyCode recentPressedKey;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage firstStage) throws Exception {
@@ -289,9 +293,5 @@ public class GUI extends Application {
             alert.setHeaderText(null);
             alert.showAndWait();
         }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

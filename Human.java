@@ -80,7 +80,7 @@ public class Human extends Animal {
             useSpecialAbility = false;
             cooldown = 5;
             strength += cooldown;
-            announcements += (name + " used special ability and has \n" + strength + " strength!");
+            announcements += (name + " used special ability and has \n" + strength + " strength!\n");
         } else if (cooldown > 0) {
             strength--;
             cooldown--;

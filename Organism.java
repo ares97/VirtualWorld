@@ -4,40 +4,19 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class Organism {
+    public final Color color;
+    public final String name;
     protected String announcements;
     protected int age;
     protected int strength;
     protected int initiation;
     protected int posX, posY;
     protected boolean toDelete;
-    public final Color color;
-    public final String name;
     protected MyField fields[][];
 
     protected Random generator;
     protected List organisms;
     protected int cooldown;
-
-    abstract void action();
-
-    void doTurn() {
-        if (toDelete)
-            organisms.remove(this);
-        else {
-            announcements = "";
-            action();
-            age++;
-        }
-    }
-
-    abstract int reflectedAttack(Organism opponent);
-
-    public void emptyField() {
-        fields[posX][posY].setEmpty(true);
-        fields[posX][posY].setName("  ");
-        fields[posX][posY].setColor(Color.LIGHTGREEN);
-        fields[posX][posY].setOrganism(null);
-    }
 
     Organism(MyField fields[][], int str, int init, Color color, String name, List<Organism> organisms) {
         this.fields = fields;
@@ -88,6 +67,27 @@ public abstract class Organism {
         this.posY = posY;
         this.cooldown = cooldown;
         setOnField(posX, posY);
+    }
+
+    abstract void action();
+
+    void doTurn() {
+        if (toDelete)
+            organisms.remove(this);
+        else {
+            announcements = "";
+            action();
+            age++;
+        }
+    }
+
+    abstract int reflectedAttack(Organism opponent);
+
+    public void emptyField() {
+        fields[posX][posY].setEmpty(true);
+        fields[posX][posY].setName("  ");
+        fields[posX][posY].setColor(Color.LIGHTGREEN);
+        fields[posX][posY].setOrganism(null);
     }
 
     public void setOnField(int destX, int destY) {

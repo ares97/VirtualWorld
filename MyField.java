@@ -12,18 +12,9 @@ import javafx.scene.shape.Rectangle;
 import java.io.Serializable;
 
 public class MyField extends GridPane implements Serializable {
-    private Group root;
-    private String name;
-    private Color color;
-    private int x;
-    private int y;
-    private boolean isEmpty;
-    private Rectangle rectangle;
-    private Organism organism;
-    private Label label;
-    public ContextMenu contextMenu;
     public static final int rectangleWidth = 25;
     public static final int rectangleHeight = 25;
+    public ContextMenu contextMenu;
     MenuItem sheep = new MenuItem(AllOrganisms.SHEEP.name);
     MenuItem wolf = new MenuItem(AllOrganisms.WOLF.name);
     MenuItem antelope = new MenuItem(AllOrganisms.ANTELOPE.name);
@@ -34,6 +25,31 @@ public class MyField extends GridPane implements Serializable {
     MenuItem guarana = new MenuItem(AllOrganisms.GUARANA.name);
     MenuItem sosnowskyHogweed = new MenuItem(AllOrganisms.SOSNOWSKY_HOGWEED.name);
     MenuItem wildBerry = new MenuItem(AllOrganisms.WILD_BERRY.name);
+    private Group root;
+    private String name;
+    private Color color;
+    private int x;
+    private int y;
+    private boolean isEmpty;
+    private Rectangle rectangle;
+    private Organism organism;
+    private Label label;
+
+    public MyField(Group root, String name, Color color, int x, int y) {
+
+        prepareEmptyField(root, x, y, name, color);
+
+        rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    contextMenu.show(root, event.getScreenX(), event.getScreenY());
+                }
+            }
+        });
+
+        handleContextMenu();
+    }
 
     public Organism getOrganism() {
         return organism;
@@ -42,13 +58,6 @@ public class MyField extends GridPane implements Serializable {
     public void setOrganism(Organism organism) {
         this.organism = organism;
     }
-
-    public void setColor(Color color) {
-        this.color = color;
-        rectangle.setStroke(color);
-        rectangle.setFill(color.deriveColor(1, 1, 1, 0.7));
-    }
-
 
     public String getName() {
         return name;
@@ -61,6 +70,12 @@ public class MyField extends GridPane implements Serializable {
 
     public Color getColor() {
         return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+        rectangle.setStroke(color);
+        rectangle.setFill(color.deriveColor(1, 1, 1, 0.7));
     }
 
     public int getX() {
@@ -94,22 +109,6 @@ public class MyField extends GridPane implements Serializable {
         setTranslateX(x * rectangleWidth);
         setTranslateY(y * rectangleHeight);
         getChildren().addAll(rectangle, label);
-    }
-
-    public MyField(Group root, String name, Color color, int x, int y) {
-
-        prepareEmptyField(root, x, y, name, color);
-
-        rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getButton() == MouseButton.SECONDARY) {
-                    contextMenu.show(root, event.getScreenX(), event.getScreenY());
-                }
-            }
-        });
-
-        handleContextMenu();
     }
 
     void handleContextMenu() {
