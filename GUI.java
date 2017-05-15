@@ -1,5 +1,8 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -15,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -51,9 +55,21 @@ public class GUI extends Application {
         firstStage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN ||
-                        event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT)
+                if ((event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN ||
+                        event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT) && Human.isAlive) {
                     recentPressedKey = event.getCode();
+                    Stage tempStage = new Stage();
+                    tempStage.setScene(new Scene(new Label(recentPressedKey + " will be next human's directory")));
+                    tempStage.show();
+                    Timeline timeline = new Timeline();
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            tempStage.hide();
+                        }
+                    }));
+                    timeline.play();
+                }
             }
         });
     }
@@ -116,7 +132,6 @@ public class GUI extends Application {
     }
 
     private void handleNextTurnButton() {
-
         nextTurn.setOnAction(event -> Platform.runLater(() -> game.doTurn()));
     }
 

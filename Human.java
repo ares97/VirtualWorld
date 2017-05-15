@@ -5,6 +5,7 @@ import java.util.List;
 public class Human extends Animal {
     static boolean useSpecialAbility;
     static boolean specialAbilityReadyToUse;
+    static boolean isAlive;
 
     Human(MyField[][] fields, List<Organism> organisms) {
         super(fields, AllOrganisms.HUMAN.strength, AllOrganisms.HUMAN.initiation, AllOrganisms.HUMAN.color, AllOrganisms.HUMAN.name, organisms);
@@ -14,6 +15,7 @@ public class Human extends Animal {
         cooldown = 0;
         useSpecialAbility = false;
         specialAbilityReadyToUse = true;
+        isAlive = true;
     }
 
     Human(MyField[][] fields, List<Organism> organisms, int posX, int posY, int str, int init, String name, Color color, boolean toDelete, int cooldown, int age) {
@@ -21,6 +23,7 @@ public class Human extends Animal {
         if (cooldown != 0) {
             useSpecialAbility = false;
             specialAbilityReadyToUse = false;
+            isAlive = true;
         }
     }
 
@@ -31,6 +34,7 @@ public class Human extends Animal {
     void doTurn() {
         if (toDelete) {
             emptyField();
+            isAlive = false;
             organisms.remove(this);
         } else {
             announcements = "";
@@ -52,7 +56,6 @@ public class Human extends Animal {
         addToY = 0;
         addToX = 0;
         if (GUI.recentPressedKey != null) {
-            System.out.println(GUI.recentPressedKey);
             switch (GUI.recentPressedKey) {
                 case UP:
                     moveHuman(0, -1);

@@ -41,7 +41,6 @@ public class Game {
 
     public void doTurn() {
         String announcements = "";
-        sortOrganismsTurnQueue();
         for (int i = 0; i < organisms.size(); i++) {
             if (organisms.get(i).toDelete) {
                 organisms.get(i).doTurn();
@@ -51,6 +50,7 @@ public class Game {
                 GUI.announcements.setText(announcements);
             }
         }
+        sortOrganismsTurnQueue();
     }
 
 
